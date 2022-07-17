@@ -1,0 +1,90 @@
+Algoritmo Vestibular 
+Início
+    var linha, coluna, i, maioresNotas[4], qtdAprovados : inteiro
+    var nomes[4][25], alunoMaiorNota : caractere 
+    var notas[4][25], maiorNotaDaTurma, maiorNotaGeral : real
+    var aprovados[4] : inteiro
+    
+    qtdAprovados <- 0
+    Para i de 0 até 3 faça:
+        aprovados[i] <- 0
+    Fimpara
+
+    escreva("Informe os nomes e notas dos alunos de acordo com cada turma:" )
+    Para linha de 0 até 3 faça:
+        maiorNotaDaTurma <- 0
+
+        se (linha = 0):
+            escreva("turma A: ")  
+        senão se (linha = 1):
+            escreva("turma B: ")
+        senão se (linha = 2):
+            escreva("turma C: ")
+        senão:
+            escreva("turma D: ")
+
+        Para coluna de 0 até 24 faça:
+            escreva("Digite o nome do aluno ", coluna +1, ": " )
+            leia(nomes[linha][coluna])
+            escreva("Digite a nota do aluno ", coluna +1, ": " )
+            leia(notas[linha][coluna])
+
+            Para i de 0 até coluna-1 faça:
+                se (notas[linha][i] = notas[linha][coluna]):
+                    escreva("Entrada inválida. As notas na mesma turma não podem se repetir.")
+                    i <- coluna
+                    coluna <- coluna -1
+                fimse
+            Fimpara
+
+            se (notas[linha][coluna] >= 7):
+                aprovados[linha] <- aprovados[linha] + 1
+                qtdAprovados <- qtdAprovados + 1
+            fimse
+
+            se (notas[linha][coluna] > maiorNotaDaTurma):
+                maiorNotaDaTurma <- notas[linha][coluna]
+                maioresNotas[linha] <- coluna
+            fimse
+        Fimpara
+    Fimpara    
+
+    
+    escreva("A quantidade total de alunos aprovados foi: ", qtdAprovados)
+    escreva("Aprovados por turma: ")
+    Para i de 0 até 3 faça:
+        se (linha = 0):
+            escreva("turma A: ")  
+        senão se (linha = 1):
+            escreva("turma B: ")
+        senão se (linha = 2):
+            escreva("turma C: ")
+        senão:
+            escreva("turma D: ")
+        fimse
+        escreva(aprovados[i], " aprovados.")
+    Fimpara
+                
+    escreva("Maiores notas por turma: ")
+    Para i de 0 até 3 faça:
+        se (linha = 0):
+            escreva("turma A: ")  
+        senão se (linha = 1):
+            escreva("turma B: ")
+        senão se (linha = 2):
+            escreva("turma C: ")
+        senão:
+            escreva("turma D: ")
+        fimse
+        escreva("Maior nota: ", notas[i][maioresNotas[i]])
+    Fimpara
+
+    maiorNotaGeral <- 0
+    Para i de 0 até 3 faça:
+        se (notas[i][maioresNotas[i]] > maiorNotaGeral):
+            maiorNotaGeral <- notas[i][maioresNotas[i]]
+            alunoMaiorNota <- nomes[i][maioresNotas[i]]
+        fimse
+    Fimpara
+    escreva("Aluno que tirou a maior nota: ", alunoMaiorNota)
+Fim
